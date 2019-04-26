@@ -21,12 +21,12 @@ router.get('/dashboard', passport.authenticate('jwt', {session:false}),(req,res)
 /**
  * Create a new request list of logged in user
  */
-router.post('/add', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/:id/add', passport.authenticate('jwt', { session: false }), (req, res) => {
     new Ticket({
     	subject: req.body.subject,
         description: req.body.description,
         request_type:req.body.request_type,
-        owner:req.user.id,
+        owner:req.params.id,
         status:"New"
     
     })
