@@ -21,6 +21,11 @@ const UserSchema = new Schema ({
         type:Date,
         default:Date.now
     }
+    // ,
+    // user_type:{
+    //     type:String,
+    //     default:"employee"
+    // }
 });
 
 module.exports = User = mongoose.model('users', UserSchema);

@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const users = require('./routes/users');
+const tickets = require('./routes/tickets');
 const cors = require('cors');
 const passport = require('passport');
 const app = express();
@@ -28,31 +29,34 @@ mongoose
 app.get('/', (req,res) => res.json({msg:"hello my name is"}));
 app.get('/about', (req,res) => res.send("Our company was founded in 2015"));
 app.use('/users', users);
+app.use('/tickets', tickets);
 
-app.get('/dashboard', passport.authenticate('jwt', {session:false}),(req,res) => {
-  return res.json({
-    data: [
-      {
-        "name": "Top Secret Agent 1",
-        "profession": "CIA Operative",
-        "location": "Lebanon"
-      },
-      {
-        "name": "Tom Cruise",
-        "profession": "Black Ops",
-        "location": "Lisbon"
-      },
-      {
-        "name": "James Bond 007",
-        "profession": "MI6 Agent",
-        "location": "London"
-      }
-    ]
-  })
-})
+app.use('/dashboard', tickets);
+//   return res.json({
+//     data: [
+//       {
+//         "name": "Top Secret Agent 1",
+//         "profession": "CIA Operative",
+//         "location": "Lebanon"
+//       },
+//       {
+//         "name": "Tom Cruise",
+//         "profession": "Black Ops",
+//         "location": "Lisbon"
+//       },
+//       {
+//         "name": "James Bond 007",
+//         "profession": "MI6 Agent",
+//         "location": "London"
+//       }
+//     ]
+//   })
+// })
 
 
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(port, () => {
+console.log(db);
+console.log(`Server running on port ${port}`)});
