@@ -31,11 +31,9 @@ router.post('/add', passport.authenticate('jwt', { session: false }), (req, res)
     
     })
     .save(()=>{
-        if (err){
+        if (err)
         res.send(err);
-        }else{
-      res.send('Ticket successfully added!');
-       console.log('Ticket successfully added!');}
+        res.send('Ticket successfully added!');
     })
     .then(ticket => res.json({id: ticket.id}))
     .catch(err => console.log(err)
