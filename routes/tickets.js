@@ -23,8 +23,8 @@ router.get('/dashboard', passport.authenticate('jwt', {session:false}),(req,res)
  */
 router.post('/add', passport.authenticate('jwt', { session: false }), (req, res) => {
     new Ticket({
-    	subject: req.body.name,
-        description: req.user,
+    	subject: req.body.subject,
+        description: req.body.description,
         request_type:req.body.request_type,
         owner:req.user.id,
         status:"New"

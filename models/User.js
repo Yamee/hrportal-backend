@@ -15,17 +15,18 @@ const UserSchema = new Schema ({
         required:true
     },
     avatar:{
-        type:String
+        type:String,
+        default:"//www.gravatar.com/avatar/bd6502d87e6b4a1c7f7c9379d2ef2592?s=200&r=pg&..."
     },
     date:{
         type:Date,
         default:Date.now
     }
-    // ,
-    // user_type:{
-    //     type:String,
-    //     default:"employee"
-    // }
+    ,
+    user_type:{
+        type:String,
+        default:"employee"
+    }
 });
 
 module.exports = User = mongoose.model('users', UserSchema);

@@ -29,7 +29,7 @@ mongoose
 app.get('/', (req,res) => res.json({msg:"hello my name is"}));
 app.get('/about', (req,res) => res.send("Our company was founded in 2015"));
 app.use('/users', users);
-app.use('/tickets', tickets);
+ app.use('/tickets', tickets);
 
 app.use('/dashboard', tickets);
 //   return res.json({
