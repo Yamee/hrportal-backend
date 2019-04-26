@@ -21,7 +21,7 @@ router.get('/dashboard', passport.authenticate('jwt', {session:false}),(req,res)
 /**
  * Create a new request list of logged in user
  */
-router.post('/:id/add', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/add', passport.authenticate('jwt', { session: false }), (req, res) => {
     new Ticket({
     	subject: req.body.subject,
         description: req.body.description,
@@ -31,9 +31,11 @@ router.post('/:id/add', passport.authenticate('jwt', { session: false }), (req, 
     
     })
     .save(()=>{
-        if (err)
+        if (err){
         res.send(err);
+        }else{
       res.send('Ticket successfully added!');
+       console.log('Ticket successfully added!');}
     })
     .then(ticket => res.json({id: ticket.id}))
     .catch(err => console.log(err)
