@@ -1,13 +1,12 @@
 const express = require('express');
 const passport = require('passport');
-// const Task  = require('../models/Task');
 const Ticket  = require('../models/Ticket');
 const router = express.Router();
 
 
-router.get('/dashboard', passport.authenticate('jwt', {session:false}),(req,res) => {
+router.get('/', passport.authenticate('jwt', {session:false}),(req,res) => {
  
-    tickets.find(function(err, tickets){
+  Ticket.find(function(err, tickets){
       if(err){
         console.log(err);
       }
@@ -31,29 +30,30 @@ router.post('/add', passport.authenticate('jwt', { session: false }), (req, res)
     
     })
     .save(()=>{
-        if (err)
-        res.send(err);
-        res.send('Ticket successfully added!');
-    })
-    .then(ticket => res.json({id: ticket.id}))
-    .catch(err => console.log(err)
-    );
+      if (err)
+      res.send(err);
+    res.send('Ticket successfully added!');
+  })
+  .then(ticket => res.json({id: ticket.id}))
+  .catch(err => console.log(err));
 });
 
 
-router.get('/', passport.authenticate('jwt', {session:false}),(req,res) => {
- console.log(req.user.name);
-    tickets.find(function(err, tickets){
-      if(err){
-        console.log(err);
-      }
-      else {
-    return    res.json(tickets);
-      }
-    });
-  });
+// router.get('/', passport.authenticate('jwt', {session:false}),(req,res) => {
+//  console.log(req.user.name);
+//     tickets.find(function(err, tickets){
+//       if(err){
+//         console.log(err);
+//       }
+//       else {
+//     return    res.json(tickets);
+//       }
+//     });
+//   });
   
+  module.exports = router;
 
+  
 /*
 Returns the Tickects of the logged user by Name
 */
@@ -121,4 +121,3 @@ Returns the Tickects of the logged user by Name
 
 // });
 
-module.exports = router;
